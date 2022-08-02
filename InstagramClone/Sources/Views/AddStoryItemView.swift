@@ -17,28 +17,28 @@ struct AddStoryItemView: View {
                 Image("user_circle")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 40)
+                    .frame(width: 48)
                     .clipShape(Circle())
                     .foregroundColor(.white)
                 
                 Image("add_circle")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 20)
+                    .frame(width: 24)
                     .foregroundColor(.blue)
-                    .position(x: 54, y: 54)
+                    .position(x: 65, y: 65)
                     .overlay(
                         Circle().stroke(lineWidth: 4)
-                            .frame(width: 20, height: 20)
-                            .position(x: 54, y: 54)
+                            .frame(width: 24, height: 24)
+                            .position(x: 65, y: 65)
                             .foregroundColor(Color(uiColor: .systemBackground))
                     )
             }
-            .frame(width: 64, height: 64)
+            .frame(width: 74, height: 74)
             
             Text("Your Story")
                 .font(.system(size: 12))
-                .frame(maxWidth: 64)
+                .frame(maxWidth: 74)
         }
     }
 }

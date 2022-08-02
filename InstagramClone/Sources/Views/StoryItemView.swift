@@ -16,18 +16,18 @@ struct StoryItemView: View {
             ZStack {
                 Circle()
                     .stroke(LinearGradient.instaGradient, lineWidth: 2)
-                    .frame(width: 64, height: 64)
+                    .frame(width: 74, height: 74)
                 
                 Image(image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 58)
+                    .frame(width: 65)
                     .clipShape(Circle())
             }
             
             Text(name)
                 .font(.system(size: 12))
-                .frame(maxWidth: 64)
+                .frame(maxWidth: 74)
         }
     }
 }

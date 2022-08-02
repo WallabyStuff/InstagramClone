@@ -8,30 +8,44 @@
 import SwiftUI
 
 struct NewsView: View {
+    static let NEWS_VIEW_SHOWING_STATE = "NEWS_VIEW_SHOWING_STATE"
+    @State private var isNewsViewHidden = false
+    
     var body: some View {
-        HStack {
-            LinearGradient.instaGradient
-            .mask(
-                Image("round_star_shield")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+        if isNewsViewHidden == false {
+            HStack {
+                LinearGradient.instaGradient
+                    .mask(
+                        Image("round_star_shield")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 20)
+                    )
                     .frame(width: 20)
-            )
-            .frame(width: 20)
-            
-            Text("Lorem ipsum dolor sit amet, consentetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore mgna aliqua.")
-                .font(.system(size: 12))
-            
-            Button {
-                // do something
-            } label: {
-                Image(systemName: "xmark")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 12)
-                    .foregroundColor(.gray)
+                
+                Text("Lorem ipsum dolor sit amet, consentetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore mgna aliqua.")
+                    .font(.system(size: 12))
+
+                Button {
+                    withAnimation {
+                        isNewsViewHidden.toggle()
+                    }
+                } label: {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 12)
+                        .foregroundColor(.gray)
+                }
             }
+            .padding(.DEFAULT_HORIZONTAL_SPACING)
         }
-        .padding(.DEFAULT_HORIZONTAL_SPACING)
+    }
+}
+
+extension View {
+    @ViewBuilder
+    func isHidden(_ shouldHide: Bool) -> some View {
+        opacity(shouldHide ? 0 : 1)
     }
 }

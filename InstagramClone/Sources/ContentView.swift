@@ -115,3 +115,10 @@ struct ContentView: View {
         }
     }
 }
+
+struct ContentView_Preview: PreviewProvider {
+    static var previews: some View {
+        return ContentView()
+            .previewDevice(.init(rawValue: "iPhone 13 Pro"))
+    }
+}

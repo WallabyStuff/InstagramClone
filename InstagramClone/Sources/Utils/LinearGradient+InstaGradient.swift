@@ -17,9 +17,12 @@ extension LinearGradient {
 
 extension Gradient {
     static var instaGradient: Gradient {
-        return Gradient(colors: [Color(hex: "#FFC800"),
-                                 Color(hex: "#FF6C00"),
-                                 Color(hex: "#FF086F"),
-                                 Color(hex: "#E400CA")])
+        return Gradient(colors: [Color(hex: "#FFD100"),
+                                 Color(hex: "#FFD100"),
+                                 Color(hex: "#FF8000"),
+                                 Color(hex: "#FF1122"),
+                                 Color(hex: "#FF005F"),
+                                 Color(hex: "#E700CD"),
+                                 Color(hex: "#E700CD")])
     }
 }

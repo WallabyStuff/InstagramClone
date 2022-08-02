@@ -16,7 +16,7 @@ struct PostView: View {
                 ZStack {
                     Circle()
                         .stroke(LinearGradient.instaGradient, lineWidth: 1.5)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 38, height: 38)
                     
                     Image(post.user.image)
                         .resizable()
