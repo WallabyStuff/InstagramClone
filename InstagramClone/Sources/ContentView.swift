@@ -16,7 +16,7 @@ struct ContentView: View {
         .init(name: "greedy_hamster", image: "profile_image5")
     ]
     
-    let posts: [Post] = [
+    @State var posts: [Post] = [
         .init(user: .init(name: "josh_me", image: "profile_image1"),
               description: "location: Jeju island", image: "feed_image1",
               content: "I went to Jeju. Is was the most wonderful experience I've ever had"),
