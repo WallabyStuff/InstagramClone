@@ -14,6 +14,7 @@ struct PostView: View {
     @State var isBookmarked = false
     @State var isNotInterested = false
     @State private var isShowingOptionDialog = false
+    @State var showLike = false
     
     var body: some View {
         if isNotInterested == false {
@@ -82,9 +83,39 @@ struct PostView: View {
                 .padding(.leading, .DEFAULT_HORIZONTAL_SPACING)
                 .padding(.trailing, .DEFAULT_HORIZONTAL_SPACING)
                 
-                Image(post.image)
-                    .resizable()
-                    .scaledToFit()
+                GeometryReader { proxy in
+                    TabView {
+                        ForEach(post.images, id: \.self) { image in
+                            Image(image)
+                                .resizable()
+                                .scaledToFill()
+                        }
+                    }
+                    .frame(width: proxy.size.width, height: proxy.size.width)
+                    .background(Color(uiColor: .systemGray6))
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+                    .onTapGesture(count: 2) {
+                        withAnimation(.spring(response: 0.2 ,dampingFraction: 0.6, blendDuration: 0.7)) {
+                            isLiked = true
+                            showLike = true
+                            makeImpactFeedback()
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            withAnimation {
+                                showLike = false
+                            }
+                        }
+                    }
+                    .overlay(
+                        Image("heart-filled")
+                            .resizable()
+                            .frame(width: 84, height: 84)
+                            .foregroundColor(.white)
+                            .shadow(color: .black.opacity(0.1), radius: 20, x: 0, y: 4)
+                            .isHidden(!showLike)
+                            .scaleEffect(showLike ? 1 : 0.2)
+                    )
+                }.aspectRatio(contentMode: .fit)
                 
                 HStack(spacing: 16) {
                     Button {
@@ -146,5 +177,17 @@ struct PostView: View {
         guard let urlShare = URL(string: "https://www.apple.com") else { return }
         let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true)
+    }
+    
+    private func makeImpactFeedback() {
+        let impactFeedback = UIImpactFeedbackGenerator(style: .light)
+        impactFeedback.impactOccurred()
+    }
+}
+
+struct PostView_Preview: PreviewProvider {
+    static var previews: some View {
+        return ContentView()
+            .previewDevice(.init(rawValue: "iPhone 13 Pro"))
     }
 }

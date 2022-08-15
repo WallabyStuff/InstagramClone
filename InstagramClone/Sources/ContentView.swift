@@ -18,13 +18,13 @@ struct ContentView: View {
     
     @State var posts: [Post] = [
         .init(user: .init(name: "josh_me", image: "profile_image1"),
-              description: "location: Jeju island", image: "feed_image1",
+              description: "location: Jeju island", images: ["feed_image1", "feed_image2"],
               content: "I went to Jeju. Is was the most wonderful experience I've ever had"),
         .init(user: .init(name: "jomma_oppa", image: "profile_image3"),
-              description: "location: Jeju island", image: "feed_image2",
+              description: "location: Jeju island", images: ["feed_image2", ""],
               content: "Yo I've been to Jeju either"),
         .init(user: .init(name: "greedy_hamster", image: "profile_image5"),
-              description: "The space", image: "feed_image3",
+              description: "The space", images: ["feed_image3"],
               content: "I'm in space.. reconnecting..."),
     ]
     

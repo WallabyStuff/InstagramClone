@@ -11,6 +11,6 @@ struct Post: Identifiable {
     var id: UUID = UUID()
     var user: User
     var description: String
-    var image: String
+    var images: [String]
     var content: String
 }
